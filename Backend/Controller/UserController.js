@@ -7,9 +7,13 @@ const { useDebugValue } = require("react");
 // creating new account
 exports.createAccount = CatchAsync(async (request, response) => {
   const Account = await User.create(request.body);
+  const verificationToken = Account.generateVerificationToken();
+
+  await Account.save({ validateBeforeSave: false });
 
   response.status(200).json({
     Account,
+    verification: `localhost:3000/api/v1/users/verify/${verificationToken}`,
   });
 });
 
@@ -56,13 +60,14 @@ exports.verifyAccount = CatchAsync(async (request, response, next) => {
     accountVerificationTokenExpires: { $gt: Date.now() },
   });
 
-  if (!userDocument) return next("Token expires or user doesnot expires");
+  if (!userDocument)
+    return next(new AppError("Token expires or user doesnot expires", 500));
 
   userDocument.isVerified = true;
   userDocument.accountVerificationToken = undefined;
   userDocument.accountVerificationTokenExpires = undefined;
 
-  await userDocument.save();
+  await userDocument.save({ validateBeforeSave: false });
 
   response.status(200).json({
     message: "Account Verified",

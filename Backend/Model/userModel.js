@@ -31,7 +31,11 @@ const userSchema = mongoose.Schema({
       message: "Password doesnot match",
     },
   },
-  isVerified: false,
+  isVerified: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   accountVerificationToken: String,
   accountVerificationTokenExpires: Date,
   passwordChangedAt: Date,
@@ -47,6 +51,15 @@ userSchema.pre("save", async function (next) {
 
 userSchema.methods.checkPassword = async function (enteredPW, actualPW) {
   return await bcrypt.compare(enteredPW, actualPW);
+};
+
+userSchema.methods.generateVerificationToken = function () {
+  const token = crypto.randomBytes(40).toString("hex");
+  const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+  this.accountVerificationToken = hashedToken;
+  this.accountVerificationTokenExpires = Date.now() + 10 * 60 * 1000;
+
+  return token;
 };
 
 // user model
