@@ -33,6 +33,7 @@ const userSchema = mongoose.Schema({
   },
   isVerified: false,
   accountVerificationToken: String,
+  accountVerificationTokenExpires: Date,
   passwordChangedAt: Date,
 });
 
