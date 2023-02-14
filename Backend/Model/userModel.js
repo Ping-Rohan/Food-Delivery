@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
+const crypto = require("crypto");
+const { stringify } = require("querystring");
 
 const userSchema = mongoose.Schema({
   name: {
@@ -29,6 +31,9 @@ const userSchema = mongoose.Schema({
       message: "Password doesnot match",
     },
   },
+  isVerified: false,
+  accountVerificationToken: String,
+  passwordChangedAt: Date,
 });
 
 userSchema.pre("save", async function (next) {
@@ -38,6 +43,10 @@ userSchema.pre("save", async function (next) {
   this.confirmPassword = undefined;
   next();
 });
+
+userSchema.methods.checkPassword = async function (enteredPW, actualPW) {
+  return await bcrypt.compare(enteredPW, actualPW);
+};
 
 // user model
 const User = mongoose.model("User", userSchema);
