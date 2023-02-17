@@ -2,7 +2,7 @@ const User = require("../Model/userModel");
 const AppError = require("../Utils/AppError");
 const CatchAsync = require("../Utils/CatchAsync");
 const crypto = require("crypto");
-const { useDebugValue } = require("react");
+const { issueAccessToken, issueRefreshToken } = require("../Utils/IssueJWT");
 
 // creating new account
 exports.createAccount = CatchAsync(async (request, response) => {
@@ -41,8 +41,17 @@ exports.login = CatchAsync(async (request, response, next) => {
   )
     return next(new AppError("Email or password incorrect"));
 
+  const accessToken = issueAccessToken({ _id: userDocument._id });
+  const refreshToken = issueRefreshToken({ _id: userDocument._id });
+
+  // sending refresh token as HTTP ONLY cookie
+  response.cookie("auth", refreshToken, {
+    httpOnly: true,
+  });
+
   response.status(200).json({
     message: "Logged in successfully",
+    accessToken,
   });
 });
 
@@ -71,5 +80,23 @@ exports.verifyAccount = CatchAsync(async (request, response, next) => {
 
   response.status(200).json({
     message: "Account Verified",
+  });
+});
+
+exports.aggregate = CatchAsync(async (request, response) => {
+  const data = await User.aggregate([
+    {
+      $match: { name: "Rohan Tiwari" },
+    },
+    {
+      $group: {
+        _id: "$name",
+        fullName: { $first: "$name" },
+      },
+    },
+  ]);
+
+  response.status(200).json({
+    data,
   });
 });

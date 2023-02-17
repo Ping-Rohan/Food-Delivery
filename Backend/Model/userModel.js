@@ -62,6 +62,18 @@ userSchema.methods.generateVerificationToken = function () {
   return token;
 };
 
+userSchema.methods.hasChangedPasswordRecently = function (jwtIssued) {
+  if (this.passwordChangedAt) {
+    const passwordChangedAt = parseInt(
+      this.passwordChangedAt.getTime() * 1000,
+      10
+    );
+    return jwtIssued < passwordChangedAt;
+  }
+
+  return false;
+};
+
 // user model
 const User = mongoose.model("User", userSchema);
 
