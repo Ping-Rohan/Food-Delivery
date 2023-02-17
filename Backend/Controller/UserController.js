@@ -83,6 +83,27 @@ exports.verifyAccount = CatchAsync(async (request, response, next) => {
   });
 });
 
+exports.changePassword = CatchAsync(async (request, response, next) => {
+  const { currentPassword, newPassword } = request.body;
+
+  if (!currentPassword || !newPassword)
+    return next(new AppError("Please enter current and new password both"));
+
+  const userDocument = await User.findById(request.user._id);
+
+  if (
+    !(await userDocument.checkPassword(currentPassword, userDocument.password))
+  )
+    return next(new AppError("Incorrect password"));
+
+  userDocument.password = newPassword;
+  userDocument.save();
+
+  response.status(200).json({
+    message: "Password changed successfully",
+  });
+});
+
 exports.aggregate = CatchAsync(async (request, response) => {
   const data = await User.aggregate([
     {

@@ -10,7 +10,7 @@ exports.protectRoutes = CatchAsync(async (request, response, next) => {
     request.headers.authorization &&
     request.headers.authorization.startsWith("Bearer")
   ) {
-    token = request.headers.authorization.split(" ")[0];
+    token = request.headers.authorization.split(" ")[1];
   }
 
   if (!token) return next(new AppError("Please provide access-token"));
