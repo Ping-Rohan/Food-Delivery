@@ -18,8 +18,6 @@ exports.nearStore = catchAsync(async (request, response, next) => {
   const longitude = parseFloat(request.body.longitude);
   const latitude = parseFloat(request.body.latitude);
 
-  console.log(longitude, latitude);
-
   const stores = await Store.aggregate([
     {
       $geoNear: {
