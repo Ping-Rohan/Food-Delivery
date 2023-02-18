@@ -7,7 +7,7 @@ mongoose.connect(process.env.DB_LINK).then(() => {
   console.log("Connected to DB");
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 // listening requests
 app.listen(PORT, () => {

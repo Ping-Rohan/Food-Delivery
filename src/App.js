@@ -3,15 +3,22 @@ import Login from "./Pages/Login";
 import HomePage from "./Pages/HomePage";
 import Layout from "./Components/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import PersistLogin from "./Axios/PersistLogin";
 
 const browserRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <PersistLogin />,
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <Layout />,
+        children: [
+          {
+            path: "/",
+            element: <HomePage />,
+          },
+        ],
       },
     ],
   },

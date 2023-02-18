@@ -9,7 +9,7 @@ const globalErrorHandler = require("./Utils/GlobalErrorHandler");
 // global middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5000" }));
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 // route redirection
 app.use("/api/v1/users", userRouter);
