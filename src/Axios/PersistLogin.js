@@ -21,7 +21,7 @@ export default function PersistLogin() {
       }
     }
 
-    !accessToken ? persist() : setIsMounted(false);
+    !accessToken && persist();
   }, []);
 
   return isMounted ? <p>Loading</p> : <Outlet />;

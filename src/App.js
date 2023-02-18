@@ -4,6 +4,7 @@ import HomePage from "./Pages/HomePage";
 import Layout from "./Components/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PersistLogin from "./Axios/PersistLogin";
+import About from "./Pages/About";
 
 const browserRouter = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const browserRouter = createBrowserRouter([
           {
             path: "/",
             element: <HomePage />,
+          },
+          {
+            path: "/about",
+            element: <About />,
           },
         ],
       },
