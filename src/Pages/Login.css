@@ -1,0 +1,43 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 16px;
+}
+
+.login .input input {
+  width: 300px;
+  height: 30px;
+  padding: 5px 10px;
+}
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login {
+  background-color: #ddd;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.login button {
+  background-color: orange;
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.error {
+  font-size: 14px;
+  color: red;
+}
