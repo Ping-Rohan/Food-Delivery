@@ -41,3 +41,8 @@
   font-size: 14px;
   color: red;
 }
+
+.checkbox {
+  display: flex;
+  gap: 10px;
+}

@@ -10,10 +10,15 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { handleChange, handleSubmit, errors, touched, values } = useFormik({
-    initialValues: { email: "", password: "" },
+    initialValues: { email: "", password: "", stayLoggedIn: false },
     validationSchema: LoginSchema,
     onSubmit: (value, action) => {
-      dispatch(login(value, navigate));
+      const loginForm = {
+        email: value.email,
+        password: value.password,
+      };
+
+      dispatch(login(loginForm, navigate, value.stayLoggedIn));
       action.resetForm();
     },
   });
@@ -44,6 +49,15 @@ export default function Login() {
             onChange={handleChange}
             value={values.password}
           />
+        </div>
+        <div className="checkbox">
+          <input
+            type="checkbox"
+            onChange={handleChange}
+            name="stayLoggedIn"
+            value={values.stayLoggedIn}
+          />
+          <label htmlFor="">Keep me logged in</label>
         </div>
         <button type="submit">Login</button>
       </form>
