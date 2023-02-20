@@ -1,3 +1,28 @@
 .home {
-  padding-block: 20px;
+  padding-block: 40px;
+}
+
+.home .topbar {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Kanit", sans-serif;
+}
+
+.home .topbar h1 {
+  font-size: 20px;
+  font-weight: 300;
+  color: black;
+}
+
+.home select {
+  font-family: inherit;
+  font-weight: 200;
+}
+
+.food-items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+  grid-row-gap: 40px;
 }

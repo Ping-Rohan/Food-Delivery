@@ -26,6 +26,14 @@ exports.getUserById = CatchAsync(async (request, response) => {
   });
 });
 
+exports.getMyProfile = CatchAsync(async (request, response) => {
+  const userDocument = await User.findById(request.user._id);
+  console.log(userDocument);
+  response.status(200).json({
+    user: userDocument,
+  });
+});
+
 // Login user
 exports.login = CatchAsync(async (request, response, next) => {
   const { email, password } = request.body;

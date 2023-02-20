@@ -5,6 +5,9 @@ import Layout from "./Components/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PersistLogin from "./Axios/PersistLogin";
 import About from "./Pages/About";
+import Profile from "./Pages/Profile";
+import Cart from "./Pages/Cart";
+import CreateStore from "./Pages/CreateStore";
 
 const browserRouter = createBrowserRouter([
   {
@@ -22,6 +25,18 @@ const browserRouter = createBrowserRouter([
           {
             path: "/about",
             element: <About />,
+          },
+          {
+            path: "/profile",
+            element: <Profile />,
+          },
+          {
+            path: "/cart",
+            element: <Cart />,
+          },
+          {
+            path: "/create-store",
+            element: <CreateStore />,
           },
         ],
       },

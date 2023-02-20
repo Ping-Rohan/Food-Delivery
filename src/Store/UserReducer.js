@@ -1,9 +1,9 @@
 import { setIsLoggedIn, setAccessToken, setUserDocument } from "./UserSlice";
 import axios from "../Axios/index";
+import privateRoute from "../Axios/privateInstance";
 
 const login = (formData, navigate, stayLoggedIn) => {
   return async (dispatch) => {
-    console.log(stayLoggedIn);
     const response = await axios.post("/users/login", formData, {
       withCredentials: true,
     });
@@ -13,4 +13,11 @@ const login = (formData, navigate, stayLoggedIn) => {
   };
 };
 
-export { login };
+const getMyProfile = () => {
+  return async (dispatch) => {
+    const response = await privateRoute.get("/users/profile");
+    dispatch(setUserDocument(response.data.user));
+  };
+};
+
+export { login, getMyProfile };
