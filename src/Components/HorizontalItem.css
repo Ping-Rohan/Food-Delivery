@@ -1,0 +1,8 @@
+.horizontal-item {
+  display: flex;
+  height: 150px;
+}
+
+.horizontal-item img {
+  height: 100%;
+}

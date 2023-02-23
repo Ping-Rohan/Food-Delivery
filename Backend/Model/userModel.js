@@ -36,6 +36,10 @@ const userSchema = mongoose.Schema({
     required: true,
     default: false,
   },
+  profilePicture: {
+    type: String,
+    default: "https://ionicframework.com/docs/img/demos/avatar.svg",
+  },
   accountVerificationToken: String,
   accountVerificationTokenExpires: Date,
   passwordChangedAt: Date,

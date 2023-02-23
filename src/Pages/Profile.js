@@ -1,3 +1,42 @@
+import { getMyProfile } from "../Store/UserReducer";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import "./Profile.css";
+import HorizontalItem from "../Components/HorizontalItem";
+import { AiFillCheckCircle } from "react-icons/ai";
+
 export default function Profile() {
-  return <div>Profile</div>;
+  const dispatch = useDispatch();
+  const userDocument = useSelector((state) => state.user.userDocument);
+
+  console.log(userDocument);
+  useEffect(() => {
+    dispatch(getMyProfile());
+  }, []);
+
+  return (
+    <section className="profile-page">
+      <div className="curve">
+        <div className="profile-picture">
+          <img src={userDocument?.profilePicture} alt="" />
+          <AiFillCheckCircle className="verified-logo" />
+        </div>
+      </div>
+
+      <div className="container">
+        <div className="name">
+          <h2>{userDocument?.name}</h2>
+        </div>
+
+        <div className="track-order">
+          <div className="pending-orders">
+            <h2>Your Pending Orders</h2>
+            <div className="pending-items">
+              <HorizontalItem />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

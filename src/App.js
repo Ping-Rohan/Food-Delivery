@@ -8,6 +8,7 @@ import About from "./Pages/About";
 import Profile from "./Pages/Profile";
 import Cart from "./Pages/Cart";
 import CreateStore from "./Pages/CreateStore";
+import Shimmer from "./Pages/Shimmer";
 
 const browserRouter = createBrowserRouter([
   {

@@ -86,6 +86,7 @@ header .search {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  z-index: 9999;
 }
 
 .dropdown-menu li {
