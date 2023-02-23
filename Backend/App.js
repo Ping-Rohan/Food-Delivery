@@ -14,6 +14,7 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 // route redirection
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/store", storeRouter);
+app.use("/", express.static("./public"));
 
 // error handler central place
 app.use(globalErrorHandler);

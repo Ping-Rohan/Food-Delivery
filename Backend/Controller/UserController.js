@@ -6,6 +6,7 @@ const { issueAccessToken, issueRefreshToken } = require("../Utils/IssueJWT");
 
 // creating new account
 exports.createAccount = CatchAsync(async (request, response) => {
+  if (request.file) request.body.profilePicture = request.file.filename;
   const Account = await User.create(request.body);
   const verificationToken = Account.generateVerificationToken();
 
@@ -28,7 +29,6 @@ exports.getUserById = CatchAsync(async (request, response) => {
 
 exports.getMyProfile = CatchAsync(async (request, response) => {
   const userDocument = await User.findById(request.user._id);
-  console.log(userDocument);
   response.status(200).json({
     user: userDocument,
   });
