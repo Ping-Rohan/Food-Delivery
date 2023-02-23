@@ -27,15 +27,6 @@ export default function Profile() {
         <div className="name">
           <h2>{userDocument?.name}</h2>
         </div>
-
-        <div className="track-order">
-          <div className="pending-orders">
-            <h2>Your Pending Orders</h2>
-            <div className="pending-items">
-              <HorizontalItem />
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

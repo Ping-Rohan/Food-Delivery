@@ -1,8 +1,40 @@
 .horizontal-item {
   display: flex;
-  height: 150px;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid #ddd;
+  width: 600px;
 }
 
+.item-img {
+  height: 70px;
+}
 .horizontal-item img {
   height: 100%;
+}
+
+.horizontal-item-details,
+.horizontal-title {
+  display: flex;
+}
+
+.horizontal-item-details {
+  gap: 30px;
+}
+
+.horizontal-title {
+  flex-direction: column;
+  align-items: center;
+}
+
+.horizontal-heading {
+  font-size: 18px;
+  font-family: "Kanit", sans-serif;
+}
+
+.item-price,
+.item-quantity,
+.item-total,
+.item-name {
+  font-family: "Montserrat", sans-serif;
 }

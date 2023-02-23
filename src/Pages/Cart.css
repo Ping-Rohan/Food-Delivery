@@ -1,0 +1,40 @@
+.cart-section {
+  padding-block: 40px;
+}
+
+.cart-section .container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+  height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: min-content;
+  padding-inline: 20px;
+  padding-block-end: 50px;
+  position: relative;
+}
+
+.cart-section .btn-primary {
+  background-color: orange;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 20px;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "Kanit", sans-serif;
+  width: 100%;
+}
+
+.button {
+  width: 600px;
+  position: fixed;
+  bottom: 20px;
+  width: 600px;
+  padding-block: 5px;
+  background-color: white;
+  box-sizing: border-box;
+}
