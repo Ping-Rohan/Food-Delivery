@@ -17,7 +17,7 @@ export default function Profile() {
       <div className="curve">
         <div className="profile-picture">
           <img src={userDocument?.profilePicture} alt="" />
-          {userDocument.isVerified && (
+          {userDocument?.isVerified && (
             <AiFillCheckCircle className="verified-logo" />
           )}
         </div>

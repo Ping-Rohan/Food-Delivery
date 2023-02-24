@@ -5,7 +5,7 @@ const CatchAsync = require("./CatchAsync");
 
 exports.issueAccessToken = (payload) => {
   return jwt.sign(payload, process.env.ACCESS_JWT, {
-    expiresIn: "300000",
+    expiresIn: "20s",
   });
 };
 
@@ -22,7 +22,7 @@ exports.refreshAccessToken = CatchAsync(async (request, response, next) => {
     );
 
   const refreshToken = request.cookies.auth;
-  const decoded = jwt.decode(refreshToken);
+  const decoded = jwt.verify(refreshToken, process.env.REFRESH_JWT);
 
   const userDocument = await User.findById(decoded._id);
   if (!userDocument) return next(new AppError("User doesnot exist"));

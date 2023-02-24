@@ -15,7 +15,7 @@ exports.protectRoutes = CatchAsync(async (request, response, next) => {
 
   if (!token) return next(new AppError("Please provide access-token"));
 
-  const decoded = jwt.decode(token, process.env.ACCESS_JWT);
+  const decoded = jwt.verify(token, process.env.ACCESS_JWT);
 
   const userDocument = await User.findById(decoded._id);
 
