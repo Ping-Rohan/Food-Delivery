@@ -66,6 +66,9 @@ export default function Header() {
                         <li>Your Store</li>
                       </Link>
                     )}
+                    <Link to="/settings">
+                      <li>Settings</li>
+                    </Link>
                   </div>
                 )}
               </div>

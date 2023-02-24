@@ -10,6 +10,7 @@ import Cart from "./Pages/Cart";
 import CreateStore from "./Pages/CreateStore";
 import Shimmer from "./Pages/Shimmer";
 import Store from "./Pages/Store";
+import Settings from "./Pages/Settings";
 
 const browserRouter = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const browserRouter = createBrowserRouter([
           {
             path: "/store",
             element: <Store />,
+          },
+          {
+            path: "/settings",
+            element: <Settings />,
           },
         ],
       },

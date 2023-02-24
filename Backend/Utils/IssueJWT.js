@@ -5,7 +5,7 @@ const CatchAsync = require("./CatchAsync");
 
 exports.issueAccessToken = (payload) => {
   return jwt.sign(payload, process.env.ACCESS_JWT, {
-    expiresIn: "20s",
+    expiresIn: "2m",
   });
 };
 

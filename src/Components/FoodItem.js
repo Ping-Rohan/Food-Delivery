@@ -25,7 +25,7 @@ export default function FoodItem() {
           <span className="price-details details-info">1200</span>
         </div>
         <div className="ordered col ">
-          <span className="details-heading">Ordered</span>
+          <span className="details-heading">Sold</span>
           <span className="price-details details-info">300</span>
         </div>
       </div>
