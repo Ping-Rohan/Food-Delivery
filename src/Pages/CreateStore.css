@@ -1,0 +1,90 @@
+.create-store {
+  padding-block-end: 40px;
+}
+
+.create-store h1 {
+  font-family: "Montserrat", sans-serif;
+  margin-block: 20px;
+  text-transform: capitalize;
+  line-height: 1.4;
+}
+
+.create-store {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Kanit", sans-serif;
+}
+
+.create-store .container {
+  max-width: 500px;
+}
+
+.create-store .container form {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.create-store .container form button {
+  background-color: orange;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  font-family: inherit;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  padding: 5px 10px;
+}
+
+textarea {
+  resize: none;
+}
+.store-upload {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.store-upload .file {
+  position: relative;
+  width: 30px;
+  overflow: hidden;
+}
+
+.store-upload .file input {
+  transform: scale(1.1);
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+}
+
+.camera-logo {
+  font-size: 24px;
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.create-store .location {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.location-logo {
+  font-size: 20px;
+}
+
+.extra-info {
+  display: flex;
+  gap: 40px;
+}

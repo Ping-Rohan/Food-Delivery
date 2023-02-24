@@ -1,11 +1,15 @@
 const Store = require("../Model/storeModel");
 const catchAsync = require("../Utils/CatchAsync");
+const User = require("../Model/userModel");
 
 // create new store
 exports.createStore = catchAsync(async (request, response) => {
   request.body.storeBy = request.user._id;
-  console.log(request.body);
+  if (request.photos) request.body.storeImages = request.photos;
+  request.body.storeLocation = JSON.parse(request.body.storeLocation);
   const store = await Store.create(request.body);
+
+  await User.findByIdAndUpdate(request.user._id, { hasStore: true });
 
   response.status(200).json({
     message: "Store created successfully",

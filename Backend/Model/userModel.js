@@ -4,46 +4,50 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const { stringify } = require("querystring");
 
-const userSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please enter your name"],
-  },
-  email: {
-    type: String,
-    required: [true, "Please enter your email"],
-    validate: [validator.isEmail, "Please provide valid email"],
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: [true, "Please enter password"],
-    vaildate: [validator.isStringPassword],
-    select: false,
-  },
-  confirmPassword: {
-    type: String,
-    required: [true, "Please confirm your password"],
-    validate: {
-      validator: function (value) {
-        return this.password === value;
-      },
-      message: "Password doesnot match",
+const userSchema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Please enter your name"],
     },
+    email: {
+      type: String,
+      required: [true, "Please enter your email"],
+      validate: [validator.isEmail, "Please provide valid email"],
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: [true, "Please enter password"],
+      vaildate: [validator.isStringPassword],
+      select: false,
+    },
+    confirmPassword: {
+      type: String,
+      required: [true, "Please confirm your password"],
+      validate: {
+        validator: function (value) {
+          return this.password === value;
+        },
+        message: "Password doesnot match",
+      },
+    },
+    isVerified: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    profilePicture: {
+      type: String,
+      default: "https://ionicframework.com/docs/img/demos/avatar.svg",
+    },
+    hasStore: false,
+    accountVerificationToken: String,
+    accountVerificationTokenExpires: Date,
+    passwordChangedAt: Date,
   },
-  isVerified: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  profilePicture: {
-    type: String,
-    default: "https://ionicframework.com/docs/img/demos/avatar.svg",
-  },
-  accountVerificationToken: String,
-  accountVerificationTokenExpires: Date,
-  passwordChangedAt: Date,
-});
+  { timestamps: true }
+);
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();

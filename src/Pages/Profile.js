@@ -1,15 +1,13 @@
 import { getMyProfile } from "../Store/UserReducer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Profile.css";
-import HorizontalItem from "../Components/HorizontalItem";
 import { AiFillCheckCircle } from "react-icons/ai";
 
 export default function Profile() {
   const dispatch = useDispatch();
   const userDocument = useSelector((state) => state.user.userDocument);
-
-  console.log(userDocument);
+  const date = new Date(userDocument?.createdAt);
   useEffect(() => {
     dispatch(getMyProfile());
   }, []);
@@ -19,13 +17,19 @@ export default function Profile() {
       <div className="curve">
         <div className="profile-picture">
           <img src={userDocument?.profilePicture} alt="" />
-          <AiFillCheckCircle className="verified-logo" />
+          {userDocument.isVerified && (
+            <AiFillCheckCircle className="verified-logo" />
+          )}
         </div>
       </div>
 
       <div className="container">
         <div className="name">
           <h2>{userDocument?.name}</h2>
+          <span className="joined-date">
+            Joined {date.getFullYear()}{" "}
+            {date.toLocaleString("default", { month: "long" })} {date.getDate()}
+          </span>
         </div>
       </div>
     </section>

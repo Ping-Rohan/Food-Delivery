@@ -57,9 +57,13 @@ export default function Header() {
                     <Link to="/cart">
                       <li>Cart</li>
                     </Link>
-                    <Link to="/create-store">
-                      <li>Create Store</li>
-                    </Link>
+                    {!userDocument.hasStore ? (
+                      <Link to="/create-store">
+                        <li>Create Store</li>
+                      </Link>
+                    ) : (
+                      <Link to="/store">Your Store</Link>
+                    )}
                   </div>
                 )}
               </div>
