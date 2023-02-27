@@ -20,11 +20,16 @@ async function sendRefreshRequest() {
   }
   return accessToken;
 }
+
 privateInstance.interceptors.request.use(async (request) => {
   const accessToken = await sendRefreshRequest();
-  console.log("set header");
   request.headers.authorization = `Bearer ${accessToken}`;
   return request;
+});
+
+privateInstance.interceptors.response.use(async (response) => {
+  if (response.status === 200) logout();
+  return response;
 });
 
 export default privateInstance;
