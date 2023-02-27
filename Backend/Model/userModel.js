@@ -72,11 +72,11 @@ userSchema.methods.generateVerificationToken = function () {
 
 userSchema.methods.hasChangedPasswordRecently = function (jwtIssued) {
   if (this.passwordChangedAt) {
-    const passwordChangedAt = parseInt(
-      this.passwordChangedAt.getTime() * 1000,
+    const passwordChangedTime = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
       10
     );
-    return jwtIssued < passwordChangedAt;
+    return jwtIssued < passwordChangedTime;
   }
 
   return false;

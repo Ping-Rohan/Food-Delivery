@@ -1,0 +1,24 @@
+.settings {
+  padding-block: 40px;
+  font-family: "Kanit", sans-serif;
+}
+
+.btn-primary {
+  background-color: blue;
+  padding: 10px 20px;
+  font: inherit;
+  font-size: 14px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.settings label {
+  font-weight: 200;
+}
+
+.password-change-portal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

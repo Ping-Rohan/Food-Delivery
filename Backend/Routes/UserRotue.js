@@ -15,7 +15,9 @@ Router.post(
   userController.createAccount
 );
 Router.get("/verify/:verificationToken", userController.verifyAccount);
+
 Router.use(protectRoute.protectRoutes);
+Router.post("/change-password", userController.changePassword);
 Router.get("/profile", userController.getMyProfile);
 Router.get("/aggregate", userController.aggregate);
 Router.get("/:id", userController.getUserById);

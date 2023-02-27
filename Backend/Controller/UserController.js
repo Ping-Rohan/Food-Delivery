@@ -92,12 +92,16 @@ exports.verifyAccount = CatchAsync(async (request, response, next) => {
 });
 
 exports.changePassword = CatchAsync(async (request, response, next) => {
-  const { currentPassword, newPassword } = request.body;
+  const { currentPassword, newPassword, confirmPassword } = request.body;
+
+  console.log(currentPassword, newPassword);
 
   if (!currentPassword || !newPassword)
     return next(new AppError("Please enter current and new password both"));
 
-  const userDocument = await User.findById(request.user._id);
+  const userDocument = await User.findById(request.user._id).select(
+    "+password"
+  );
 
   if (
     !(await userDocument.checkPassword(currentPassword, userDocument.password))
@@ -105,7 +109,9 @@ exports.changePassword = CatchAsync(async (request, response, next) => {
     return next(new AppError("Incorrect password"));
 
   userDocument.password = newPassword;
-  userDocument.save();
+  userDocument.confirmPassword = confirmPassword;
+  userDocument.passwordChangedAt = Date.now();
+  await userDocument.save();
 
   response.status(200).json({
     message: "Password changed successfully",

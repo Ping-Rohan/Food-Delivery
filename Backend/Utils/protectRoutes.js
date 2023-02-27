@@ -21,7 +21,7 @@ exports.protectRoutes = CatchAsync(async (request, response, next) => {
 
   if (!userDocument) return next(new AppError("User no longer exists"));
 
-  if (userDocument.hasChangedPasswordRecently())
+  if (userDocument.hasChangedPasswordRecently(decoded.iat))
     return next(
       new AppError(
         "User changed password recently , Please login with new password"
