@@ -2,9 +2,11 @@ import axios from "./index";
 import store from "../Store/index";
 import jwtDecode from "jwt-decode";
 import { setAccessToken } from "../Store/UserSlice";
+import { logout } from "../Store/UserReducer";
 
 const privateInstance = axios.create({
   baseURL: "/api/v1",
+  withCredentials: true,
 });
 
 async function sendRefreshRequest() {
@@ -27,9 +29,14 @@ privateInstance.interceptors.request.use(async (request) => {
   return request;
 });
 
-privateInstance.interceptors.response.use(async (response) => {
-  if (response.status === 200) logout();
-  return response;
-});
+privateInstance.interceptors.response.use(
+  (response) => {
+    console.log(response);
+    return response;
+  },
+  (error) => {
+    if (error.response.status === 401) store.dispatch(logout());
+  }
+);
 
 export default privateInstance;
