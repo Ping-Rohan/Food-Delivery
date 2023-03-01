@@ -1,4 +1,4 @@
-import React, { useDebugValue, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { AiFillCaretDown, AiOutlineSearch } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -6,12 +6,17 @@ import { useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { logout } from "../Store/UserReducer";
+import { getMyProfile } from "../Store/UserReducer";
 
 export default function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const userDocument = useSelector((state) => state.user.userDocument);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMyProfile());
+  }, []);
 
   function handleDropdown() {
     setShowDropdown((prev) => !prev);

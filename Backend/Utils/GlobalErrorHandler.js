@@ -53,6 +53,6 @@ module.exports = (error, request, response, next) => {
   if (process.env.NODE_ENV === "production")
     return sendErrorProduction(error, response);
   if (process.env.NODE_ENV === "development") {
-    sendErrorDevelopment(error, response);
+    return sendErrorDevelopment(error, response);
   }
 };

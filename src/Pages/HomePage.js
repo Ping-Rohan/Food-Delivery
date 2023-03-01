@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import "./HomePage.css";
 import FoodItem from "../Components/FoodItem";
-import { getMyProfile } from "../Store/UserReducer";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { getFoods } from "../Store/FoodReducer";
 
 export default function HomePage() {
+  const foods = useSelector((state) => state.food.foods);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getMyProfile());
+    dispatch(getFoods());
   }, []);
-
   return (
     <section className="home">
       <div className="container">
@@ -26,19 +27,18 @@ export default function HomePage() {
           </div>
         </div>
         <div className="food-items">
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
+          {foods.map((food) => {
+            return (
+              <FoodItem
+                image={food.foodImages[0]}
+                foodName={food.foodName}
+                rating={food.ratings}
+                price={food.price}
+                sold={food.sold}
+                stocks={food.stock}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

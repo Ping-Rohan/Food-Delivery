@@ -41,6 +41,9 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "https://ionicframework.com/docs/img/demos/avatar.svg",
     },
+    storeId: {
+      type: mongoose.Schema.ObjectId,
+    },
     hasStore: false,
     accountVerificationToken: String,
     accountVerificationTokenExpires: Date,

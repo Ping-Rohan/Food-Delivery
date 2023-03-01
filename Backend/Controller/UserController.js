@@ -29,6 +29,7 @@ exports.getUserById = CatchAsync(async (request, response) => {
 });
 
 exports.getMyProfile = CatchAsync(async (request, response) => {
+  console.log(request.user._id);
   const userDocument = await User.findById(request.user._id);
   response.status(200).json({
     user: userDocument,

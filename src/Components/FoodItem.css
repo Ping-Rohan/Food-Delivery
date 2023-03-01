@@ -5,6 +5,8 @@ img {
 .image-heading img {
   border-radius: 15px;
   margin-bottom: 15px;
+  height: 150px;
+  width: 100%;
 }
 
 .food-item {
@@ -24,7 +26,7 @@ img {
 
 .rating {
   font-family: "Kanit", sans-serif;
-  margin-top: 10px;
+  margin-top: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,7 +41,7 @@ img {
 
 .food-details {
   display: flex;
-  padding-top: 20px;
+  padding-top: 10px;
   justify-content: space-between;
 }
 

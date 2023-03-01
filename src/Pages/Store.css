@@ -1,3 +1,24 @@
 .store {
   padding-block: 30px;
 }
+
+.store-form {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "Kanit", sans-serif;
+  width: 40%;
+}
+
+.store-form button {
+  background-color: orange;
+  padding: 10px 20px;
+  margin-top: 10px;
+  color: white;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}

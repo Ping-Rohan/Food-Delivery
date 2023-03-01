@@ -5,7 +5,7 @@ import { setAccessToken } from "../Store/UserSlice";
 import { logout } from "../Store/UserReducer";
 
 const privateInstance = axios.create({
-  baseURL: "/api/v1",
+  baseURL: "http://localhost:5000/api/v1",
   withCredentials: true,
 });
 

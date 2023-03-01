@@ -18,9 +18,10 @@ Router.get("/logout", userController.logout);
 Router.post("/refresh", refreshAccessToken);
 
 Router.use(protectRoute.protectRoutes);
+Router.get("/profile", userController.getMyProfile);
+
 Router.post("/change-password", userController.changePassword);
 
-Router.get("/profile", userController.getMyProfile);
 Router.get("/aggregate", userController.aggregate);
 Router.get("/:id", userController.getUserById);
 

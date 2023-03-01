@@ -9,7 +9,10 @@ exports.createStore = catchAsync(async (request, response) => {
   request.body.storeLocation = JSON.parse(request.body.storeLocation);
   const store = await Store.create(request.body);
 
-  await User.findByIdAndUpdate(request.user._id, { hasStore: true });
+  await User.findByIdAndUpdate(request.user._id, {
+    hasStore: true,
+    storeId: store._id,
+  });
 
   response.status(200).json({
     message: "Store created successfully",
