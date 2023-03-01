@@ -3,6 +3,7 @@ const AppError = require("../Utils/AppError");
 const CatchAsync = require("../Utils/CatchAsync");
 const crypto = require("crypto");
 const { issueAccessToken, issueRefreshToken } = require("../Utils/IssueJWT");
+const path = require("path");
 
 // creating new account
 exports.createAccount = CatchAsync(async (request, response) => {
@@ -94,8 +95,6 @@ exports.verifyAccount = CatchAsync(async (request, response, next) => {
 exports.changePassword = CatchAsync(async (request, response, next) => {
   const { currentPassword, newPassword, confirmPassword } = request.body;
 
-  console.log(currentPassword, newPassword);
-
   if (!currentPassword || !newPassword)
     return next(new AppError("Please enter current and new password both"));
 
@@ -115,6 +114,13 @@ exports.changePassword = CatchAsync(async (request, response, next) => {
 
   response.status(200).json({
     message: "Password changed successfully",
+  });
+});
+
+exports.logout = CatchAsync((request, response, next) => {
+  response.clearCookie("auth", { path: "/" });
+  response.status(200).json({
+    message: "Logged Out ",
   });
 });
 

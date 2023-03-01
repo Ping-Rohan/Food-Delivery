@@ -16,9 +16,10 @@ exports.issueRefreshToken = (payload) => {
 };
 
 exports.refreshAccessToken = CatchAsync(async (request, response, next) => {
+  console.log(request.cookies.auth);
   if (!request.cookies.auth)
     return next(
-      new AppError("Please provide refresh token to refresh access token")
+      new AppError("Please provide refresh token to refresh access token", 401)
     );
 
   const refreshToken = request.cookies.auth;

@@ -13,7 +13,7 @@ exports.protectRoutes = CatchAsync(async (request, response, next) => {
     token = request.headers.authorization.split(" ")[1];
   }
 
-  if (!token) return next(new AppError("Please provide access-token"));
+  if (!token) return next(new AppError("Please provide access-token", 401));
 
   const decoded = jwt.verify(token, process.env.ACCESS_JWT);
 

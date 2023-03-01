@@ -4,11 +4,14 @@ import { AiFillCaretDown, AiOutlineSearch } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { logout } from "../Store/UserReducer";
 
 export default function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const userDocument = useSelector((state) => state.user.userDocument);
+  const dispatch = useDispatch();
 
   function handleDropdown() {
     setShowDropdown((prev) => !prev);
@@ -16,6 +19,10 @@ export default function Header() {
 
   function handleWarningClose() {
     setShowWarning(false);
+  }
+
+  function handleLogout() {
+    dispatch(logout());
   }
 
   return (
@@ -69,6 +76,7 @@ export default function Header() {
                     <Link to="/settings">
                       <li>Settings</li>
                     </Link>
+                    <li onClick={handleLogout}>Logout</li>
                   </div>
                 )}
               </div>

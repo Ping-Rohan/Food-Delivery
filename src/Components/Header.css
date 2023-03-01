@@ -76,8 +76,8 @@ header .search {
 
 .dropdown-menu {
   position: absolute;
-  bottom: -125px;
-  width: 130%;
+  bottom: -155px;
+  width: 120%;
   right: 0;
   background-color: #d3d3d3;
   font-family: "Kanit", sans-serif;

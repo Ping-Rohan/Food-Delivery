@@ -7,7 +7,6 @@ const upload = require("../Utils/Multer");
 const { resizeImage } = require("../Utils/Sharp");
 
 Router.post("/login", userController.login);
-Router.get("/refresh", refreshAccessToken);
 Router.post(
   "/",
   upload.single("profile"),
@@ -15,9 +14,12 @@ Router.post(
   userController.createAccount
 );
 Router.get("/verify/:verificationToken", userController.verifyAccount);
+Router.get("/logout", userController.logout);
+Router.post("/refresh", refreshAccessToken);
 
 Router.use(protectRoute.protectRoutes);
 Router.post("/change-password", userController.changePassword);
+
 Router.get("/profile", userController.getMyProfile);
 Router.get("/aggregate", userController.aggregate);
 Router.get("/:id", userController.getUserById);

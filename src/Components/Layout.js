@@ -8,6 +8,8 @@ export default function Layout() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const navigate = useNavigate();
 
+  console.log(isLoggedIn);
+
   useEffect(() => {
     if (!isLoggedIn) navigate("/login");
   }, []);

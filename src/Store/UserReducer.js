@@ -1,7 +1,6 @@
 import { setIsLoggedIn, setAccessToken, setUserDocument } from "./UserSlice";
 import axios from "../Axios/index";
 import privateRoute from "../Axios/privateInstance";
-import { isAllOf } from "@reduxjs/toolkit";
 
 const login = (formData, navigate) => {
   return async (dispatch) => {
@@ -17,24 +16,29 @@ const login = (formData, navigate) => {
 const getMyProfile = () => {
   return async (dispatch) => {
     const response = await privateRoute.get("/users/profile");
-    dispatch(setUserDocument(response.data.user));
+    dispatch(setUserDocument(response?.data?.user));
   };
 };
 
-const changePassword = (form, navigate) => {
+const logout = () => {
+  return async (dispatch) => {
+    dispatch(setIsLoggedIn(false));
+    dispatch(setAccessToken(""));
+    dispatch(setUserDocument(""));
+
+    const response = await axios.get("/users/logout", {
+      withCredentials: true,
+    });
+
+    window.location = "/login";
+  };
+};
+
+const changePassword = (form) => {
   return async (dispatch) => {
     const response = await privateRoute.post("/users/change-password", form);
-    // dispatch(setIsLoggedIn(false));
-    console.log(response);
-    // dispatch(setAccessToken(""));
-    // dispatch(setUserDocument(""));
-    // navigate("/login");
+    dispatch(logout());
   };
 };
 
-// const logout = () => {
-//   return async dispatch => {
-//     const response = await privateRoute.get('/uses/logout')
-//   }
-// }
-export { login, getMyProfile, changePassword };
+export { login, getMyProfile, changePassword, logout };
